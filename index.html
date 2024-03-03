@@ -4,23 +4,24 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Phone Hunter</title>
+    <link rel="shortcut icon" href="./logo.png" type="image/x-icon">
     <link href="https://cdn.jsdelivr.net/npm/daisyui@4.7.2/dist/full.min.css" rel="stylesheet" type="text/css" />
 <script src="https://cdn.tailwindcss.com"></script>
 
 </head>
 <body>
     <header>
-        <h2 class="text-6xl">Hunting Phones</h2>
+        <h2 class="text-6xl text-center font-extrabold text-[#1E1E1E]">Hunting Phones</h2>
     </header>
     <main>
-        <div class="bg-gray-100 rounded-lg p-4 m-4">
+        <div class="bg-gray-100 rounded-lg p-4 m-4 text-center">
             <input id="searchId" type="text" placeholder="Search" class="input input-bordered w-full max-w-xs" />
             <button onclick="handleSearch()" class="btn btn-accent">Search</button>
         </div>
         
 
         <!-- search result  -->
-        <section class="container  mx-auto mt-8">
+        <section class="container w-11/12 mx-auto mt-8">
 
             <!-- loading spinner  -->
             <div  id="spinner"  class="text-center my-4 hidden">
@@ -30,7 +31,7 @@
             <div id="phone-container" class=" grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             </div>
             <div class="text-center my-4">
-                <button onclick="handelShowall()" id="showAllId" class="btn btn-primary hidden">Show All</button>
+                <button onclick="handelShowall()" id="showAllId" class="btn btn-accent hidden">Show All</button>
             </div>
         </section>
     </main>

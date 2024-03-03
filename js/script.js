@@ -32,9 +32,6 @@ const displayPhones = (phones, isShowAll) => {
         phones=phones.slice(0,12);
     }
     
-
-
-
     phones.forEach(phone => {
         console.log(phone);
 
@@ -48,7 +45,7 @@ const displayPhones = (phones, isShowAll) => {
           <h2 class="card-title">${phone.phone_name}</h2>
           <p>Brand: ${phone.brand}</p>
           <div class="card-actions justify-end">
-            <button class="btn btn-primary">Show More</button>
+            <button class="btn btn-accent">Show More</button>
           </div>
         </div>`;
         // 4. appendchild 
