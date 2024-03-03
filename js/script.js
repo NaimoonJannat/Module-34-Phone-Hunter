@@ -19,7 +19,7 @@ const displayPhones = (phones, isShowAll) => {
 
     // display show all button 
     const showAllContainer = document.getElementById('showAllId');
-    if(phones.length >12){
+    if(phones.length >12 && !isShowAll){
         showAllContainer.classList.remove('hidden');
 
     }
@@ -33,7 +33,7 @@ const displayPhones = (phones, isShowAll) => {
     }
     
     phones.forEach(phone => {
-        console.log(phone);
+        // console.log(phone);
 
         //2. create a div 
         const phoneCard = document.createElement('div');
@@ -45,7 +45,7 @@ const displayPhones = (phones, isShowAll) => {
           <h2 class="card-title">${phone.phone_name}</h2>
           <p>Brand: ${phone.brand}</p>
           <div class="card-actions justify-end">
-            <button class="btn btn-accent">Show More</button>
+            <button onclick="handelShowDetails('${phone.slug}')" class="btn btn-accent">Show More</button>
           </div>
         </div>`;
         // 4. appendchild 
@@ -61,7 +61,7 @@ const handleSearch = (isShowAll) =>{
     toggleLoadingFunction(true);
     const searchField=document.getElementById('searchId');
     const searchText=searchField.value;
-    console.log(searchText);
+    // console.log(searchText);
     loadPhone(searchText ,isShowAll);
 }
 
@@ -79,5 +79,35 @@ const toggleLoadingFunction = (isLoading) =>{
 // handel show all button 
 const handelShowall=() =>{
     handleSearch(true);
+}
+
+const handelShowDetails = async(id) =>{
+    const res = await fetch(`https://openapi.programming-hero.com/api/phone/${id}`);
+    const data = await res.json();
+    const phone = data.data;
+    showPhoneDetails(phone);
+}
+
+// display modal 
+const showPhoneDetails = (phone) =>{
+    console.log(phone);
+
+    const phoneTitle= document.getElementById('modalTitle');
+    phoneTitle.innerText = phone.name;
+
+    const showDetailContainer = document.getElementById('modalContainer');
+    showDetailContainer.innerHTML = `
+    <img src="${phone.image}" />
+    <p><span>Storage:</span>${phone?.mainFeatures?.storage}</p>
+    <p><span>GPS:</span>${phone?.others?.GPS}</p>
+    <p><span>Display:</span>${phone?.mainFeatures?.displaySize}</p>
+    <p><span>Brand: </span>${phone?.brand}</p>
+    <p><span>Processor:</span>${phone?.mainFeatures?.chipSet}</p>
+    <p><span>Release Date:</span>${phone?.releaseDate}</p>
+    <p><span>USB:</span>${phone?.others?.USB}</p>
+    `
+
+    my_modal_5.showModal();
+
 }
 
